@@ -1088,7 +1088,7 @@ class OscController extends Controller
     {
     	$id_conferencia = $request->input('id_conferencia');
     	$json = DB::select('SELECT * FROM osc.tb_participacao_social_conferencia WHERE id_conferencia = ?::int',[$id_conferencia]);
-
+			$result = ['msg' => 'Dado Oficial, não pode ser modificado'];
     	foreach($json as $key => $value){
     		$bo_oficial = $json[$key]->bo_oficial;
     		if(!$bo_oficial){
