@@ -1180,7 +1180,7 @@ class OscController extends Controller
 
     private function updateParticipacaoSocialConferencia($params)
     {
-<<<<<<< HEAD
+
     	$id_conferencia = $request->input('id_conferencia');
     	$json = DB::select('SELECT * FROM osc.tb_participacao_social_conferencia WHERE id_conferencia = ?::int',[$id_conferencia]);
 			$result = ['msg' => 'Dado Oficial, não pode ser modificado'];
@@ -1190,18 +1190,6 @@ class OscController extends Controller
     			$cd_conferencia = $request->input('cd_conferencia');
     			if($json[$key]->cd_conferencia != $cd_conferencia) $ft_conferencia = $this->ft_representante;
     			else $ft_conferencia = $request->input('ft_conferencia');
-=======
-		$id_osc = $params['id_osc'];
-    	$id_conferencia = $params['id_conferencia'];
-		$conferencia_db = $params['conferencia_db'];
-
-		$result = ['msg' => 'Participação social em conferência atualizada'];
-    	foreach($conferencia_db as $key => $value){
-    		if(!$value->bo_oficial){
-    			$cd_conferencia = $params['cd_conferencia'];
-    			if($value->cd_conferencia != $cd_conferencia) $ft_conferencia = $this->ft_representante;
-    			else $ft_conferencia = $params['ft_conferencia'];
->>>>>>> a0e37f6b1418e248f4590b9d466f34d996f074a8
 
     			$dt_ano_realizacao = $params['dt_ano_realizacao'];
     			if($value->dt_ano_realizacao != $dt_ano_realizacao) $ft_ano_realizacao = $this->ft_representante;
