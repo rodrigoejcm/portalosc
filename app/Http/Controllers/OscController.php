@@ -1167,14 +1167,18 @@ class OscController extends Controller
     	$params = [$id_osc, $cd_conselho, $ft_conselho, $cd_tipo_participacao, $ft_tipo_participacao, $tx_periodicidade_reuniao, $ft_periodicidade_reuniao, $dt_inicio_conselho, $ft_dt_inicio_conselho, $dt_fim_conselho, $ft_dt_fim_conselho, $bo_oficial];
     	$result = $this->dao->insertParticipacaoSocialConselho($params);
 
-		$id_conselho = $this->dao->selectIdParticipacaoSocialConselho([$id_osc, $cd_conselho]);
+			$object = $this->dao->selectIdParticipacaoSocialConselho([$id_osc, $cd_conselho]);
+			if($object){
+				$id_conselho = $object->id_conselho;
 
-		foreach ($representantes as $key_representante => $value_representante) {
-			$tx_nome_representante_conselho = $value_representante['tx_nome_representante_conselho'];
+				foreach ($representantes as $key_representante => $value_representante) {
+					$tx_nome_representante_conselho = $value_representante['tx_nome_representante_conselho'];
 
-			$params = [$id_osc, $id_conselho, $tx_nome_representante_conselho];
-			$result = $this->insertMembroParticipacaoSocialConselho($params);
-		}
+					$params = [$id_osc, $id_conselho, $tx_nome_representante_conselho];
+					$result = $this->insertMembroParticipacaoSocialConselho($params);
+				}
+			}
+			
     }
 
 	private function insertMembroParticipacaoSocialConselho($params){
