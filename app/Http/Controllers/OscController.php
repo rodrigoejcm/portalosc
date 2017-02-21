@@ -707,7 +707,7 @@ class OscController extends Controller
 					if($value_req['dt_fim_certificado']){
 						$date = date_create($value_req['dt_fim_certificado']);
 						$dt_fim_certificado = date_format($date, "Y-m-d");
-						
+
 						if($value_certificado_db->dt_fim_certificado != $dt_fim_certificado){
 							$flag_update = true;
 
@@ -1167,7 +1167,7 @@ class OscController extends Controller
     	$params = [$id_osc, $cd_conselho, $ft_conselho, $cd_tipo_participacao, $ft_tipo_participacao, $tx_periodicidade_reuniao, $ft_periodicidade_reuniao, $dt_inicio_conselho, $ft_dt_inicio_conselho, $dt_fim_conselho, $ft_dt_fim_conselho, $bo_oficial];
     	$result = $this->dao->insertParticipacaoSocialConselho($params);
 
-		$id_conselho = $this->dao->selectIdParticipacaoSocialConselho([$id_osc, $cd_conselho])->id_conselho;
+		$id_conselho = $this->dao->selectIdParticipacaoSocialConselho([$id_osc, $cd_conselho]);
 
 		foreach ($representantes as $key_representante => $value_representante) {
 			$tx_nome_representante_conselho = $value_representante['tx_nome_representante_conselho'];
